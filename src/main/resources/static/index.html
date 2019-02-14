@@ -7,27 +7,52 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script>
-            $(document).on('click','#GetSchakers', function(){
+    $(document).on('click','#getSchaker', function(){
        $.ajax({
             type: "get",
             url:"/deelnemer",
             success: function(result){
-               returnfunction(result);
+            returnfunction(result);
             }
        });
     });
 
     function returnfunction(antwoordserver){
-    $('#naamschip').html(antwoordserver.name);
-    alert("Alle deelnemers komen er nu aan!");
+    $('#tabelSchaker').html(antwoordserver.voornaam);
+    alert("Alle schakers van het tournooi komer er aan!");
+    var opbouwString = "<table border=1>";
+    for(i=0;i<antwoordserver.length;i++){
+    opbouwString += "<tr><td>"+antwoordserver[i].voornaam+"</td></tr>";
+    }
+    opbouwString += "</table>";
+    document.getElementById('tabelSchaker').innerHTML = opbouwString;
     }
 
 
     </script>
+    <style>
+    table, th, td {
+    border: 1px solid blue;
+    }
+    </style>
+
 </head>
 <body>
 
-<button id="GetSchakers">Toon alle schakers!</button>
+<button id="getSchaker">Toon alle schakers!</button>
+<table id="voornaamSchaker">
+    <tr>
+        <th>Voornaam Schakers</th>
+
+    </tr>
+
+</table>
+<table id="tabelSchaker">
+    <tr>
+        <th>...</th>
+
+    </tr>
+</table>
 
 </body>
 </html>

@@ -15,13 +15,10 @@ public class SchaakEndpoint {
     @Autowired
     private SchaakRepository mijnSchaakRepository;
 
-    @GetMapping("deelnemer/{naam}")
-    public Deelnemer nieuwDeelnemer (@PathVariable String naam){
-        System.out.println("go");
-        Deelnemer deDeelnemer = new Deelnemer();
-        deDeelnemer.voornaam= naam;
-        Deelnemer kelvin = mijnSchaakRepository.save(deDeelnemer);
-        return kelvin;
+    @GetMapping("deelnemer")
+    public Iterable<Deelnemer> toonAlleDeelnemers(){
+        Iterable<Deelnemer> deelnemers = mijnSchaakRepository.findAll();
+        return deelnemers;
 
 
     }
