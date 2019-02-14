@@ -28,6 +28,23 @@
     document.getElementById('tabelSchaker').innerHTML = opbouwString;
     }
 
+    function addSchaker(){
+        var dto = {};
+        dto.voornaam = $('#inputSchaker').val();
+        dto = JSON.stringify(dto);
+        $.ajax({
+                type: "post",
+                url: "/nieuweschaker",
+                data: dto,
+                contentType : "application/json",
+                success: function(result){
+                    console.log('gelukt');
+                }
+        });
+    }
+
+
+
 
     </script>
     <style>
@@ -52,7 +69,14 @@
         <th>...</th>
 
     </tr>
-</table>
+</table> <br><br>
+
+<input type="text" id="inputSchaker"> <br>
+
+<button onclick="addSchaker()">Voeg voornaam Schaker toe!</button>
+
+
+
 
 </body>
 </html>
